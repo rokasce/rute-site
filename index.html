@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Therapist Name // Practice Name</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <style>
+    /* =====================================================
+       🎨 EASY TO CUSTOMISE — change these variables only
+       ===================================================== */
+    :root {
+      --color-bg:         #F5F0E8;   /* main page background       */
+      --color-bg-alt:     #EDE8DF;   /* alternate section / cards  */
+      --color-nav:        #FDFAF6;   /* navigation bar             */
+      --color-blob:       #6B8F6E;   /* headline blob shape        */
+      --color-blob-text:  #FFFFFF;   /* text inside blob           */
+      --color-text:       #2C2C2C;   /* main body text             */
+      --color-muted:      #6B6460;   /* secondary / caption text   */
+      --color-accent:     #C4845A;   /* links, bold highlights     */
+      --color-border:     #D8D0C4;   /* subtle dividers & borders  */
+
+      --font-heading: 'Cormorant Garamond', Georgia, serif;
+      --font-body:    'Inter', system-ui, sans-serif;
+    }
+
+    /* =====================================================
+       BASE
+       ===================================================== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--color-bg);
+      color: var(--color-text);
+      font-size: 16px;
+      line-height: 1.75;
+    }
+
+    /* =====================================================
+       NAVIGATION
+       ===================================================== */
+    nav {
+      background: var(--color-nav);
+      border-bottom: 1px solid var(--color-border);
+      padding: 18px 60px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    /* 📝 UPDATE: site title in the top-left */
+    .nav-brand {
+      font-size: 0.92rem;
+      font-weight: 400;
+      letter-spacing: 0.02em;
+      color: var(--color-text);
+    }
+    .nav-brand strong { font-weight: 600; }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 38px;
+    }
+    .nav-links a {
+      text-decoration: none;
+      font-size: 0.82rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--color-text);
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--color-accent); }
+
+    /* =====================================================
+       LAYOUT HELPERS
+       ===================================================== */
+    .container {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 90px 60px;
+    }
+
+    /* =====================================================
+       ABOUT SECTION
+       ===================================================== */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.25fr;
+      gap: 72px;
+      align-items: start;
+    }
+
+    /* 📸 UPDATE: replace this div with <img src="photo.jpg" …> */
+    .photo-placeholder {
+      width: 100%;
+      min-height: 440px;
+      background: var(--color-bg-alt);
+      border-radius: 18px;
+      border: 2px dashed var(--color-border);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      color: var(--color-muted);
+      font-size: 0.85rem;
+    }
+    .photo-placeholder span { font-size: 2.5rem; }
+
+    /* Real photo style (used when you swap in an <img>) */
+    .about-photo {
+      width: 100%;
+      aspect-ratio: 3 / 4;
+      object-fit: cover;
+      border-radius: 18px;
+      display: block;
+    }
+
+    .about-content { padding-top: 10px; }
+
+    /* ---- Blob headline ---- */
+    .blob {
+      display: inline-block;
+      background: var(--color-blob);
+      color: var(--color-blob-text);
+      /* organic asymmetric shape */
+      border-radius: 52% 48% 60% 40% / 46% 54% 46% 54%;
+      padding: 30px 44px 36px;
+      margin-bottom: 44px;
+      max-width: 360px;
+      line-height: 1.3;
+    }
+
+    /* 📝 UPDATE: the two headline lines inside the blob */
+    .blob-main {
+      display: block;
+      font-family: var(--font-heading);
+      font-size: 1.5rem;
+      font-weight: 600;
+    }
+    .blob-sub {
+      display: block;
+      font-family: var(--font-heading);
+      font-size: 1.1rem;
+      font-style: italic;
+      margin-top: 4px;
+      opacity: 0.88;
+    }
+
+    /* ---- Bio text ---- */
+    /* 📝 UPDATE: paragraphs below */
+    .bio p { margin-bottom: 18px; font-size: 0.96rem; }
+    .bio strong { color: var(--color-accent); font-weight: 600; }
+
+    /* =====================================================
+       SERVICES SECTION
+       ===================================================== */
+    .services-wrap { background: var(--color-bg-alt); }
+
+    .section-label {
+      font-family: var(--font-heading);
+      font-size: 2rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+    .section-intro {
+      font-size: 0.94rem;
+      color: var(--color-muted);
+      margin-bottom: 52px;
+      max-width: 480px;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 26px;
+    }
+
+    /* 📝 UPDATE: edit each .card below */
+    .card {
+      background: var(--color-bg);
+      border: 1px solid var(--color-border);
+      border-radius: 14px;
+      padding: 30px 26px;
+    }
+    .card-icon { font-size: 1.9rem; margin-bottom: 14px; }
+    .card h3 {
+      font-family: var(--font-heading);
+      font-size: 1.22rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+    .card p { font-size: 0.88rem; color: var(--color-muted); line-height: 1.65; }
+    .card .meta {
+      display: inline-block;
+      margin-top: 18px;
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--color-accent);
+    }
+
+    /* =====================================================
+       CONTACT SECTION
+       ===================================================== */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .contact-info h2 {
+      font-family: var(--font-heading);
+      font-size: 2rem;
+      font-weight: 600;
+      margin-bottom: 14px;
+    }
+    .contact-info > p {
+      color: var(--color-muted);
+      font-size: 0.94rem;
+      margin-bottom: 34px;
+    }
+
+    /* 📝 UPDATE: email, location, hours below */
+    .detail {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 14px;
+      font-size: 0.94rem;
+    }
+    .detail-icon {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: var(--color-blob);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+      flex-shrink: 0;
+    }
+
+    /* ---- Contact form ---- */
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .field { display: flex; flex-direction: column; gap: 6px; }
+    .field label {
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--color-muted);
+    }
+    .field input,
+    .field textarea {
+      font-family: var(--font-body);
+      font-size: 0.94rem;
+      background: transparent;
+      color: var(--color-text);
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+      padding: 11px 15px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .field input:focus,
+    .field textarea:focus { border-color: var(--color-blob); }
+    .field textarea { resize: vertical; min-height: 130px; }
+
+    #form-status {
+      font-size: 0.9rem;
+      padding: 10px 0;
+      min-height: 1.4em;
+    }
+    #form-status.form-success { color: var(--color-blob); }
+    #form-status.form-error   { color: var(--color-accent); }
+
+    .btn {
+      align-self: flex-start;
+      background: var(--color-blob);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 13px 30px;
+      font-family: var(--font-body);
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.1s;
+    }
+    .btn:hover { background: var(--color-accent); transform: translateY(-1px); }
+
+    /* =====================================================
+       FOOTER
+       ===================================================== */
+    footer {
+      background: var(--color-bg-alt);
+      border-top: 1px solid var(--color-border);
+      text-align: center;
+      padding: 26px 60px;
+      font-size: 0.8rem;
+      color: var(--color-muted);
+    }
+
+    /* =====================================================
+       RESPONSIVE
+       ===================================================== */
+    @media (max-width: 820px) {
+      nav { padding: 14px 24px; flex-direction: column; gap: 14px; }
+      .nav-links { gap: 22px; }
+      .container { padding: 60px 24px; }
+      .about-grid,
+      .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+      .cards { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- =====================================================
+     NAVIGATION
+     📝 Update the brand name and nav link labels
+     ===================================================== -->
+<nav>
+  <div class="nav-brand">
+    <strong>Your Name</strong> &nbsp;//&nbsp; Practice Title
+  </div>
+  <ul class="nav-links">
+    <li><a href="#about">About me</a></li>
+    <li><a href="#services">How I work</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+
+<!-- =====================================================
+     ABOUT / BIO
+     📸 Swap the placeholder div for an <img> tag
+     📝 Edit the blob text and bio paragraphs
+     ===================================================== -->
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+
+      <!-- PHOTO ↓ replace with: <img src="photo.jpg" alt="Your Name" class="about-photo"> -->
+      <div class="photo-placeholder">
+        <span>📷</span>
+        Your photo here
+      </div>
+
+      <div class="about-content">
+
+        <!-- BLOB HEADLINE ↓ edit the two lines of text -->
+        <div class="blob">
+          <span class="blob-main">A space to slow down<br>and find yourself</span>
+          <span class="blob-sub">in honest connection</span>
+        </div>
+
+        <!-- BIO PARAGRAPHS ↓ replace with real content -->
+        <div class="bio">
+          <p>
+            I'm <strong>[Your Name]</strong> — a therapist and coach who works from a place of genuine curiosity and deep care. My practice is grounded in the belief that lasting change doesn't come from being fixed, but from being truly heard.
+          </p>
+          <p>
+            I work with individuals navigating anxiety, life transitions, relationship difficulties, and questions of identity and meaning. Together, we explore what's beneath the surface — at a pace that feels right for you.
+          </p>
+          <p>
+            I hold a Master's degree in <strong>[field]</strong> and trained in <strong>[modality — e.g. existential therapy / CBT / somatic work]</strong>. I engage in ongoing supervision and professional development to deepen my practice.
+          </p>
+          <p>
+            Sessions are available in <strong>[languages]</strong>, in person in <strong>[city]</strong> and online.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================================================
+     SERVICES / HOW I WORK
+     📝 Edit the title, intro, and each card
+     ===================================================== -->
+<div class="services-wrap" id="services">
+  <div class="container">
+
+    <h2 class="section-label">How I work</h2>
+    <p class="section-intro">Every session is a space where you can show up exactly as you are — no agenda, no judgment.</p>
+
+    <div class="cards">
+
+      <!-- CARD 1 -->
+      <div class="card">
+        <div class="card-icon">🌿</div>
+        <h3>Individual Therapy</h3>
+        <p>One-on-one sessions focused on understanding your patterns, emotions, and the life you want to build. We work at the depth you choose.</p>
+        <span class="meta">50 min · In-person or online</span>
+      </div>
+
+      <!-- CARD 2 -->
+      <div class="card">
+        <div class="card-icon">🧭</div>
+        <h3>Life Coaching</h3>
+        <p>Structured support for navigating transitions, clarifying goals, and finding your direction when things feel uncertain or stuck.</p>
+        <span class="meta">60 min · Online</span>
+      </div>
+
+      <!-- CARD 3 -->
+      <div class="card">
+        <div class="card-icon">✦</div>
+        <h3>Free Consultation</h3>
+        <p>A relaxed introductory call to talk about what brings you here, ask any questions, and see if working together feels like the right fit.</p>
+        <span class="meta">20 min · Free · Online</span>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<!-- =====================================================
+     CONTACT
+     📝 Update email, location, hours, and intro text
+     ===================================================== -->
+<section id="contact">
+  <div class="container">
+    <div class="contact-grid">
+
+      <div class="contact-info">
+        <h2>Get in touch</h2>
+        <p>
+          If you have questions or would like to book a session, I'd love to hear from you.
+          I usually respond within one working day.
+        </p>
+
+        <!-- 📝 Update these details -->
+        <div class="detail">
+          <div class="detail-icon">✉</div>
+          <span>hello@yourname.lt</span>
+        </div>
+        <div class="detail">
+          <div class="detail-icon">📍</div>
+          <span>City, Country &nbsp;·&nbsp; Online sessions available</span>
+        </div>
+        <div class="detail">
+          <div class="detail-icon">🕐</div>
+          <span>Mon – Fri &nbsp;·&nbsp; 9:00 – 18:00</span>
+        </div>
+      </div>
+
+      <form id="contact-form">
+        <div class="field">
+          <label for="f-name">Your name</label>
+          <input id="f-name" name="name" type="text" placeholder="Name Surname" required>
+        </div>
+        <div class="field">
+          <label for="f-email">Email address</label>
+          <input id="f-email" name="email" type="email" placeholder="you@example.com" required>
+        </div>
+        <div class="field">
+          <label for="f-message">Message</label>
+          <textarea id="f-message" name="message" placeholder="What brings you here? Feel free to share as much or as little as you'd like." required></textarea>
+        </div>
+
+        <!-- Status message (hidden until submit) -->
+        <div id="form-status" role="alert" aria-live="polite"></div>
+
+        <button type="submit" class="btn" id="form-btn">Send message</button>
+      </form>
+
+      <script>
+        const form   = document.getElementById('contact-form');
+        const btn    = document.getElementById('form-btn');
+        const status = document.getElementById('form-status');
+
+        form.addEventListener('submit', async (e) => {
+          e.preventDefault();
+          btn.disabled = true;
+          btn.textContent = 'Sending…';
+          status.className = '';
+          status.textContent = '';
+
+          try {
+            const res  = await fetch('/contact', { method: 'POST', body: new FormData(form) });
+            const data = await res.json();
+
+            if (data.success) {
+              status.className  = 'form-success';
+              status.textContent = '✓ Message sent — I'll be in touch soon.';
+              form.reset();
+            } else {
+              throw new Error(data.error || 'Unknown error');
+            }
+          } catch (err) {
+            status.className  = 'form-error';
+            status.textContent = '✗ ' + (err.message || 'Something went wrong. Please try again.');
+          } finally {
+            btn.disabled = false;
+            btn.textContent = 'Send message';
+          }
+        });
+      </script>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================================================
+     FOOTER
+     📝 Update name and year
+     ===================================================== -->
+<footer>
+  © <span id="year"></span> Your Name &nbsp;·&nbsp; All rights reserved
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</footer>
+
+</body>
+</html>
