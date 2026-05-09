@@ -15,7 +15,7 @@
   "send_email": [
     {
       "name": "SEND_EMAIL",
-      "destination_address": "hello@yourdomain.lt"
+      "destination_address": "rokasce@gmail.com"
     }
   ]
 }
