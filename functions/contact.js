@@ -60,18 +60,89 @@ class ContactFormHandler {
     const from = this.env.FROM_EMAIL;
     const to = this.env.TO_EMAIL;
 
-    const rawEmail = [
-      `MIME-Version: 1.0`,
-      `From: Contact Form <${from}>`,
-      `To: <${to}>`,
-      `Reply-To: ${name} <${email}>`,
-      `Subject: New message from ${name}`,
-      `Content-Type: text/plain; charset=utf-8`,
+    const sentAt = new Date().toLocaleString("en-GB", {
+      timeZone: "Europe/Vilnius",
+      dateStyle: "medium",
+      timeStyle: "short",
+    });
+
+    const textBody = [
+      `New message from your website contact form`,
+      `─────────────────────────────────────────`,
       ``,
-      `Name:    ${name}`,
-      `Email:   ${email}`,
+      `From:     ${name} <${email}>`,
+      `Received: ${sentAt}`,
+      ``,
+      `Message:`,
       ``,
       message,
+      ``,
+      `─────────────────────────────────────────`,
+      `Reply directly to this email to respond.`,
+    ].join("\r\n");
+
+    const htmlMessage = this._htmlEscape(message).replace(/\r?\n/g, "<br>");
+    const safeName = this._htmlEscape(name);
+    const safeEmail = this._htmlEscape(email);
+
+    const htmlBody = `<!doctype html>
+<html><body style="margin:0;padding:0;background:#F5F0E8;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;color:#2C2C2C;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#F5F0E8;padding:32px 16px;">
+    <tr><td align="center">
+      <table role="presentation" width="560" cellpadding="0" cellspacing="0" style="max-width:560px;width:100%;background:#FDFAF6;border:1px solid #D8D0C4;border-radius:14px;overflow:hidden;">
+        <tr><td style="background:#6B8F6E;color:#fff;padding:20px 28px;font-size:16px;font-weight:500;letter-spacing:0.04em;">
+          New message from your website
+        </td></tr>
+        <tr><td style="padding:28px;">
+          <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="font-size:14px;line-height:1.6;">
+            <tr>
+              <td style="padding:6px 0;color:#6B6460;width:90px;">From</td>
+              <td style="padding:6px 0;"><strong>${safeName}</strong> &lt;<a href="mailto:${safeEmail}" style="color:#C4845A;text-decoration:none;">${safeEmail}</a>&gt;</td>
+            </tr>
+            <tr>
+              <td style="padding:6px 0;color:#6B6460;">Received</td>
+              <td style="padding:6px 0;color:#2C2C2C;">${sentAt}</td>
+            </tr>
+          </table>
+          <hr style="border:none;border-top:1px solid #D8D0C4;margin:22px 0;">
+          <div style="font-size:12px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:#6B6460;margin-bottom:10px;">Message</div>
+          <div style="font-size:15px;line-height:1.7;color:#2C2C2C;white-space:pre-wrap;">${htmlMessage}</div>
+        </td></tr>
+        <tr><td style="background:#EDE8DF;padding:16px 28px;font-size:12px;color:#6B6460;border-top:1px solid #D8D0C4;">
+          Reply directly to this email to respond to ${safeName}.
+        </td></tr>
+      </table>
+    </td></tr>
+  </table>
+</body></html>`;
+
+    const boundary = `bnd_${Date.now().toString(36)}_${Math.random().toString(36).slice(2)}`;
+    const subject = this._encodeHeader(`New message from ${name}`);
+    const fromHeader = this._encodeHeader(`Contact Form <${from}>`);
+    const replyTo = this._encodeHeader(`${name} <${email}>`);
+
+    const rawEmail = [
+      `MIME-Version: 1.0`,
+      `From: ${fromHeader}`,
+      `To: <${to}>`,
+      `Reply-To: ${replyTo}`,
+      `Subject: ${subject}`,
+      `Content-Type: multipart/alternative; boundary="${boundary}"`,
+      ``,
+      `--${boundary}`,
+      `Content-Type: text/plain; charset=utf-8`,
+      `Content-Transfer-Encoding: 8bit`,
+      ``,
+      textBody,
+      ``,
+      `--${boundary}`,
+      `Content-Type: text/html; charset=utf-8`,
+      `Content-Transfer-Encoding: 8bit`,
+      ``,
+      htmlBody,
+      ``,
+      `--${boundary}--`,
+      ``,
     ].join("\r\n");
 
     const stream = new ReadableStream({
@@ -83,6 +154,21 @@ class ContactFormHandler {
 
     const emailMessage = new EmailMessage(from, to, stream);
     await this.env.SEND_EMAIL.send(emailMessage);
+  }
+
+  _htmlEscape(s) {
+    return String(s)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#39;");
+  }
+
+  _encodeHeader(s) {
+    if (/^[\x20-\x7E]*$/.test(s)) return s;
+    const b64 = btoa(String.fromCharCode(...new TextEncoder().encode(s)));
+    return `=?UTF-8?B?${b64}?=`;
   }
 
   _json(body, status) {
