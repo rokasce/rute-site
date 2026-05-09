@@ -11,6 +11,8 @@
  *   SEND_EMAIL   Send Email binding pointing to the destination address above
  */
 
+import { EmailMessage } from "cloudflare:email";
+
 class ContactFormHandler {
   constructor(env) {
     this.env = env;
