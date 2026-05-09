@@ -12,6 +12,10 @@
   "compatibility_flags": [
     "nodejs_compat"
   ],
+  "vars": {
+    "FROM_EMAIL": "noreply@rcesnulevicius.lt",
+    "TO_EMAIL": "rokasce@gmail.com"
+  },
   "send_email": [
     {
       "name": "SEND_EMAIL",
