@@ -13,6 +13,8 @@
 
 class ContactFormHandler {
 
+  console.log("Env", env);
+
   /** @param {Env} env */
   constructor(env) {
     this.env = env;
