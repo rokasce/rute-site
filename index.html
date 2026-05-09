@@ -505,7 +505,7 @@
 
             if (data.success) {
               status.className  = 'form-success';
-              status.textContent = '✓ Message sent — I'll be in touch soon.';
+              status.textContent = `✓ Message sent — I'll be in touch soon.`;
               form.reset();
             } else {
               throw new Error(data.error || 'Unknown error');
