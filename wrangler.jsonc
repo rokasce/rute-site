@@ -2,6 +2,7 @@
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "ruta-site",
   "compatibility_date": "2026-05-09",
+  "main": "worker.js",
   "observability": {
     "enabled": true
   },
