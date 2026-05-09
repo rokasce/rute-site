@@ -13,11 +13,11 @@
 
 class ContactFormHandler {
 
-  console.log("Env", env);
-
   /** @param {Env} env */
   constructor(env) {
     this.env = env;
+    
+    console.log(env);
   }
 
   /** Entry point — validates, then sends. */
