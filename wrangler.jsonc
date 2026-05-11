@@ -12,6 +12,10 @@
   "compatibility_flags": [
     "nodejs_compat"
   ],
+  "routes": [
+    { "pattern": "ruta-psichologe.lt", "custom_domain": true },
+    { "pattern": "www.ruta-psichologe.lt", "custom_domain": true }
+  ],
   "vars": {
     "FROM_EMAIL": "noreply@ruta-psichologe.lt",
     "TO_EMAIL": "ruta.povilonyte@gmail.com"
