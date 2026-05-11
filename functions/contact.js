@@ -33,7 +33,7 @@ class ContactFormHandler {
     } catch (err) {
       console.error("Email send failed:", err);
       return this._json(
-        { error: "Could not send message. Please try again." },
+        { error: "Nepavyko išsiųsti žinutės. Bandykite dar kartą." },
         500
       );
     }
@@ -49,10 +49,10 @@ class ContactFormHandler {
   }
 
   _validate({ name, email, message }) {
-    if (!name) return "Name is required.";
+    if (!name) return "Vardas yra privalomas.";
     if (!email || !email.includes("@"))
-      return "A valid email address is required.";
-    if (!message) return "Message is required.";
+      return "Reikalingas teisingas el. pašto adresas.";
+    if (!message) return "Žinutė yra privaloma.";
     return null;
   }
 
@@ -60,25 +60,25 @@ class ContactFormHandler {
     const from = this.env.FROM_EMAIL;
     const to = this.env.TO_EMAIL;
 
-    const sentAt = new Date().toLocaleString("en-GB", {
+    const sentAt = new Date().toLocaleString("lt-LT", {
       timeZone: "Europe/Vilnius",
       dateStyle: "medium",
       timeStyle: "short",
     });
 
     const textBody = [
-      `New message from your website contact form`,
+      `Nauja žinutė iš svetainės kontaktų formos`,
       `─────────────────────────────────────────`,
       ``,
-      `From:     ${name} <${email}>`,
-      `Received: ${sentAt}`,
+      `Nuo:    ${name} <${email}>`,
+      `Gauta:  ${sentAt}`,
       ``,
-      `Message:`,
+      `Žinutė:`,
       ``,
       message,
       ``,
       `─────────────────────────────────────────`,
-      `Reply directly to this email to respond.`,
+      `Atsakyti galite tiesiai į šį laišką.`,
     ].join("\r\n");
 
     const htmlMessage = this._htmlEscape(message).replace(/\r?\n/g, "<br>");
@@ -91,25 +91,25 @@ class ContactFormHandler {
     <tr><td align="center">
       <table role="presentation" width="560" cellpadding="0" cellspacing="0" style="max-width:560px;width:100%;background:#FDFAF6;border:1px solid #D8D0C4;border-radius:14px;overflow:hidden;">
         <tr><td style="background:#6B8F6E;color:#fff;padding:20px 28px;font-size:16px;font-weight:500;letter-spacing:0.04em;">
-          New message from your website
+          Nauja žinutė iš svetainės
         </td></tr>
         <tr><td style="padding:28px;">
           <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="font-size:14px;line-height:1.6;">
             <tr>
-              <td style="padding:6px 0;color:#6B6460;width:90px;">From</td>
+              <td style="padding:6px 0;color:#6B6460;width:90px;">Nuo</td>
               <td style="padding:6px 0;"><strong>${safeName}</strong> &lt;<a href="mailto:${safeEmail}" style="color:#C4845A;text-decoration:none;">${safeEmail}</a>&gt;</td>
             </tr>
             <tr>
-              <td style="padding:6px 0;color:#6B6460;">Received</td>
+              <td style="padding:6px 0;color:#6B6460;">Gauta</td>
               <td style="padding:6px 0;color:#2C2C2C;">${sentAt}</td>
             </tr>
           </table>
           <hr style="border:none;border-top:1px solid #D8D0C4;margin:22px 0;">
-          <div style="font-size:12px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:#6B6460;margin-bottom:10px;">Message</div>
+          <div style="font-size:12px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:#6B6460;margin-bottom:10px;">Žinutė</div>
           <div style="font-size:15px;line-height:1.7;color:#2C2C2C;white-space:pre-wrap;">${htmlMessage}</div>
         </td></tr>
         <tr><td style="background:#EDE8DF;padding:16px 28px;font-size:12px;color:#6B6460;border-top:1px solid #D8D0C4;">
-          Reply directly to this email to respond to ${safeName}.
+          Atsakyti ${safeName} galite tiesiai į šį laišką.
         </td></tr>
       </table>
     </td></tr>
@@ -117,8 +117,8 @@ class ContactFormHandler {
 </body></html>`;
 
     const boundary = `bnd_${Date.now().toString(36)}_${Math.random().toString(36).slice(2)}`;
-    const subject = this._encodeHeader(`New message from ${name}`);
-    const fromHeader = this._encodeHeader(`Contact Form <${from}>`);
+    const subject = this._encodeHeader(`Nauja žinutė nuo ${name}`);
+    const fromHeader = this._encodeHeader(`Kontaktų forma <${from}>`);
     const replyTo = this._encodeHeader(`${name} <${email}>`);
 
     const rawEmail = [

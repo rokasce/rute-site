@@ -1,11 +1,67 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="lt">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Therapist Name // Practice Name</title>
+  <title>Rūta Povilonytė — medicinos psichologė Vilniuje</title>
+  <meta name="description" content="Rūta Povilonytė — medicinos psichologė Vilniuje. Individualios konsultacijos suaugusiems ir paaugliams gyvai arba nuotoliu. LGBTQ+ draugiška erdvė.">
+  <meta name="author" content="Rūta Povilonytė">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#6B8F6E">
+  <link rel="canonical" href="https://ruta-psichologe.lt/">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="lt_LT">
+  <meta property="og:site_name" content="Rūta Povilonytė">
+  <meta property="og:title" content="Rūta Povilonytė — medicinos psichologė Vilniuje">
+  <meta property="og:description" content="Individualios konsultacijos suaugusiems ir paaugliams gyvai Vilniuje arba nuotoliu. LGBTQ+ draugiška erdvė.">
+  <meta property="og:url" content="https://ruta-psichologe.lt/">
+  <meta property="og:image" content="https://ruta-psichologe.lt/images/ruta.jpg">
+  <meta property="og:image:alt" content="Rūta Povilonytė">
+
+  <!-- Twitter / X -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Rūta Povilonytė — medicinos psichologė Vilniuje">
+  <meta name="twitter:description" content="Individualios konsultacijos suaugusiems ir paaugliams gyvai Vilniuje arba nuotoliu.">
+  <meta name="twitter:image" content="https://ruta-psichologe.lt/images/ruta.jpg">
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌿</text></svg>">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Rūta Povilonytė",
+    "jobTitle": "Medicinos psichologė",
+    "image": "https://ruta-psichologe.lt/images/ruta.jpg",
+    "url": "https://ruta-psichologe.lt/",
+    "email": "ruta.povilonyte@gmail.com",
+    "telephone": "+37069916167",
+    "knowsLanguage": ["lt", "en"],
+    "alumniOf": {
+      "@type": "CollegeOrUniversity",
+      "name": "Vilniaus universitetas"
+    },
+    "memberOf": {
+      "@type": "Organization",
+      "name": "Lietuvos psichologų sąjunga"
+    },
+    "workLocation": {
+      "@type": "Place",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Santaros g. 5",
+        "addressLocality": "Vilnius",
+        "addressCountry": "LT"
+      }
+    }
+  }
+  </script>
 
   <style>
     :root {
@@ -161,6 +217,25 @@
 
     .bio p { margin-bottom: 18px; font-size: 0.96rem; }
     .bio strong { color: var(--color-accent); font-weight: 600; }
+    .bio-subhead {
+      font-family: var(--font-heading);
+      font-size: 1.4rem;
+      font-weight: 600;
+      margin-top: 32px;
+      margin-bottom: 14px;
+    }
+    .bio-list {
+      list-style: none;
+      padding: 0;
+      font-size: 0.94rem;
+    }
+    .bio-list li {
+      padding: 8px 0;
+      border-bottom: 1px solid var(--color-border);
+      color: var(--color-muted);
+    }
+    .bio-list li:last-child { border-bottom: none; }
+    .bio-list strong { color: var(--color-text); font-weight: 600; }
 
     .services-wrap { background: var(--color-bg-alt); }
 
@@ -233,6 +308,12 @@
       margin-bottom: 14px;
       font-size: 0.94rem;
     }
+    .detail a {
+      color: var(--color-text);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .detail a:hover { color: var(--color-accent); }
     .detail-icon {
       width: 34px;
       height: 34px;
@@ -346,15 +427,15 @@
 
 <nav>
   <div class="nav-brand">
-    <strong>Your Name</strong> &nbsp;//&nbsp; Practice Title
+    <strong>Rūta Povilonytė</strong> &nbsp;//&nbsp; Medicinos psichologė
   </div>
   <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu" aria-controls="nav-links" aria-expanded="false">
     <span></span><span></span><span></span>
   </button>
   <ul class="nav-links" id="nav-links">
-    <li><a href="#about">About me</a></li>
-    <li><a href="#services">How I work</a></li>
-    <li><a href="#contact">Contact</a></li>
+    <li><a href="#about">Apie mane</a></li>
+    <li><a href="#services">Konsultacijos</a></li>
+    <li><a href="#contact">Kontaktai</a></li>
   </ul>
   <script>
     (function () {
@@ -374,31 +455,38 @@
   <div class="container">
     <div class="about-grid">
 
-      <div class="photo-placeholder">
-        <span>📷</span>
-        Your photo here
-      </div>
+      <img class="about-photo" src="./images/ruta.jpg" alt="Rūta Povilonytė" loading="lazy">
 
       <div class="about-content">
 
         <div class="blob">
-          <span class="blob-main">A space to slow down<br>and find yourself</span>
-          <span class="blob-sub">in honest connection</span>
+          <span class="blob-main">Erdvė autentiškam<br>ryšiui ir pokyčiui</span>
+          <span class="blob-sub">kur jautiesi išgirstas</span>
         </div>
 
         <div class="bio">
           <p>
-            I'm <strong>[Your Name]</strong> — a therapist and coach who works from a place of genuine curiosity and deep care. My practice is grounded in the belief that lasting change doesn't come from being fixed, but from being truly heard.
+            Esu <strong>medicinos psichologė</strong>. Mano domėjimasis žmogaus emociniu pasauliu ir psichologiniais sunkumais prasidėjo 2020 metais, prisijungus prie <strong>Jaunimo linijos</strong> veiklos. Ši patirtis leido geriau pažinti savižudybės temą, emocinius sunkumus, santykių iššūkius bei išmokė būti šalia žmogaus įvairiais gyvenimo momentais.
           </p>
           <p>
-            I work with individuals navigating anxiety, life transitions, relationship difficulties, and questions of identity and meaning. Together, we explore what's beneath the surface — at a pace that feels right for you.
+            Profesinę patirtį kaupiau atlikdama praktiką <strong>Respublikinėje Vilniaus psichiatrijos ligoninėje</strong> bei <strong>Paramos vaikams centre</strong>. Taip pat dirbau su vaikais, paaugliais ir jų tėvais mokykloje, todėl turiu įvairiapusės patirties dirbant su skirtingo amžiaus žmonėmis ir jų patiriamais sunkumais.
           </p>
           <p>
-            I hold a Master's degree in <strong>[field]</strong> and trained in <strong>[modality — e.g. existential therapy / CBT / somatic work]</strong>. I engage in ongoing supervision and professional development to deepen my practice.
+            Šiuo metu dirbu <strong>Nacionaliniame vėžio institute</strong>, kur kasdien susiduriu su egzistenciniais klausimais, netekties, nerimo, gyvenimo prasmės, ligos patirties bei gyvenimo pokyčių temomis.
           </p>
           <p>
-            Sessions are available in <strong>[languages]</strong>, in person in <strong>[city]</strong> and online.
+            Dažniausiai klientai į mane kreipiasi dėl sunkumų santykiuose, tapatumo, savivertės klausimų, nerimo bei depresijos būsenų, trauminių įvykių, minčių apie savižudybę. Priimu klientus, priklausančius <strong>LGBTQ+ bendruomenei</strong>.
           </p>
+          <p>
+            Labai vertinu žmogišką ryšį ir tikiu, kad autentiškas, priimantis santykis, leidžiantis žmogui jaustis išgirstam ir suprastam, gali tapti svarbia gijimo bei pokyčio dalimi. Man svarbu ne tik padėti geriau suprasti sunkumus, bet ir kartu ieškoti būdų, kaip gyventi autentiškesnį ir pilnesnį gyvenimą.
+          </p>
+
+          <h3 class="bio-subhead">Išsilavinimas ir narystė</h3>
+          <ul class="bio-list">
+            <li><strong>2019 – 2023</strong> &nbsp;·&nbsp; Psichologija, bakalauras, Vilniaus universitetas</li>
+            <li><strong>2023 – 2025</strong> &nbsp;·&nbsp; Klinikinė psichologija, magistras, Vilniaus universitetas</li>
+            <li><strong>Nuo 2024 m.</strong> &nbsp;·&nbsp; Lietuvos psichologų sąjungos narė</li>
+          </ul>
         </div>
 
       </div>
@@ -409,30 +497,30 @@
 <div class="services-wrap" id="services">
   <div class="container">
 
-    <h2 class="section-label">How I work</h2>
-    <p class="section-intro">Every session is a space where you can show up exactly as you are — no agenda, no judgment.</p>
+    <h2 class="section-label">Konsultacijos</h2>
+    <p class="section-intro">Individualios konsultacijos vyksta kartą per savaitę — gyvai Vilniuje arba nuotoliu.</p>
 
     <div class="cards">
 
       <div class="card">
         <div class="card-icon">🌿</div>
-        <h3>Individual Therapy</h3>
-        <p>One-on-one sessions focused on understanding your patterns, emotions, and the life you want to build. We work at the depth you choose.</p>
-        <span class="meta">50 min · In-person or online</span>
+        <h3>Individuali konsultacija</h3>
+        <p>Individualus pokalbis, kurio metu kartu žvelgiame į tai, kas šiuo metu kelia sunkumų, ir ieškome būdų gyventi autentiškesnį, pilnesnį gyvenimą.</p>
+        <span class="meta">50 min · 40 € · kartą per savaitę</span>
       </div>
 
       <div class="card">
         <div class="card-icon">🧭</div>
-        <h3>Life Coaching</h3>
-        <p>Structured support for navigating transitions, clarifying goals, and finding your direction when things feel uncertain or stuck.</p>
-        <span class="meta">60 min · Online</span>
+        <h3>Su kuo dirbu</h3>
+        <p>Dirbu su suaugusiais ir paaugliais. Konsultuoju lietuvių ir anglų kalbomis. Priimu klientus, priklausančius LGBTQ+ bendruomenei.</p>
+        <span class="meta">Suaugusieji · Paaugliai · LT / EN</span>
       </div>
 
       <div class="card">
-        <div class="card-icon">✦</div>
-        <h3>Free Consultation</h3>
-        <p>A relaxed introductory call to talk about what brings you here, ask any questions, and see if working together feels like the right fit.</p>
-        <span class="meta">20 min · Free · Online</span>
+        <div class="card-icon">📍</div>
+        <h3>Kur ir kaip</h3>
+        <p>Konsultuoju gyvai Vilniuje arba nuotoliu — pasirinkite tai, kas Jums patogiau. Prieš pirmąją konsultaciją susitariame dėl laiko ir formato.</p>
+        <span class="meta">Santaros g. 5, Vilnius · arba nuotoliu</span>
       </div>
 
     </div>
@@ -444,43 +532,43 @@
     <div class="contact-grid">
 
       <div class="contact-info">
-        <h2>Get in touch</h2>
+        <h2>Susisiekime</h2>
         <p>
-          If you have questions or would like to book a session, I'd love to hear from you.
-          I usually respond within one working day.
+          Jei turite klausimų ar norėtumėte užsiregistruoti konsultacijai, mielai laukiu Jūsų žinutės.
+          Paprastai atsakau per vieną darbo dieną.
         </p>
 
         <div class="detail">
           <div class="detail-icon">✉</div>
-          <span>hello@yourname.lt</span>
+          <span><a href="mailto:ruta.povilonyte@gmail.com">ruta.povilonyte@gmail.com</a></span>
+        </div>
+        <div class="detail">
+          <div class="detail-icon">☎</div>
+          <span><a href="tel:+37069916167">+370 699 16167</a></span>
         </div>
         <div class="detail">
           <div class="detail-icon">📍</div>
-          <span>City, Country &nbsp;·&nbsp; Online sessions available</span>
-        </div>
-        <div class="detail">
-          <div class="detail-icon">🕐</div>
-          <span>Mon – Fri &nbsp;·&nbsp; 9:00 – 18:00</span>
+          <span>Santaros g. 5, Vilnius &nbsp;·&nbsp; arba nuotoliu</span>
         </div>
       </div>
 
       <form id="contact-form">
         <div class="field">
-          <label for="f-name">Your name</label>
-          <input id="f-name" name="name" type="text" placeholder="Name Surname" required>
+          <label for="f-name">Vardas</label>
+          <input id="f-name" name="name" type="text" placeholder="Vardas Pavardė" required>
         </div>
         <div class="field">
-          <label for="f-email">Email address</label>
-          <input id="f-email" name="email" type="email" placeholder="you@example.com" required>
+          <label for="f-email">El. paštas</label>
+          <input id="f-email" name="email" type="email" placeholder="jus@pavyzdys.lt" required>
         </div>
         <div class="field">
-          <label for="f-message">Message</label>
-          <textarea id="f-message" name="message" placeholder="What brings you here? Feel free to share as much or as little as you'd like." required></textarea>
+          <label for="f-message">Žinutė</label>
+          <textarea id="f-message" name="message" placeholder="Pasidalinkite tuo, kas Jums svarbu — tiek, kiek norėsite." required></textarea>
         </div>
 
         <div id="form-status" role="alert" aria-live="polite"></div>
 
-        <button type="submit" class="btn" id="form-btn">Send message</button>
+        <button type="submit" class="btn" id="form-btn">Siųsti žinutę</button>
       </form>
 
       <script>
@@ -491,7 +579,7 @@
         form.addEventListener('submit', async (e) => {
           e.preventDefault();
           btn.disabled = true;
-          btn.textContent = 'Sending…';
+          btn.textContent = 'Siunčiama…';
           status.className = '';
           status.textContent = '';
 
@@ -501,17 +589,17 @@
 
             if (data.success) {
               status.className  = 'form-success';
-              status.textContent = `✓ Message sent — I'll be in touch soon.`;
+              status.textContent = '✓ Žinutė išsiųsta — netrukus susisieksiu.';
               form.reset();
             } else {
-              throw new Error(data.error || 'Unknown error');
+              throw new Error(data.error || 'Nežinoma klaida');
             }
           } catch (err) {
             status.className  = 'form-error';
-            status.textContent = '✗ ' + (err.message || 'Something went wrong. Please try again.');
+            status.textContent = '✗ ' + (err.message || 'Įvyko klaida. Bandykite dar kartą.');
           } finally {
             btn.disabled = false;
-            btn.textContent = 'Send message';
+            btn.textContent = 'Siųsti žinutę';
           }
         });
       </script>
@@ -521,7 +609,7 @@
 </section>
 
 <footer>
-  © <span id="year"></span> Your Name &nbsp;·&nbsp; All rights reserved
+  © <span id="year"></span> Rūta Povilonytė &nbsp;·&nbsp; Visos teisės saugomos
   <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 </footer>
 
