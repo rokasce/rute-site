@@ -1,7 +1,7 @@
 /**
  * ContactFormHandler
  *
- * Cloudflare Pages Function — handles POST /contact
+ * Cloudflare Pages Function - handles POST /contact
  *
  * Required environment variables (set in Pages → Settings → Environment variables):
  *   FROM_EMAIL   Verified sender address, e.g. noreply@yourdomain.lt
