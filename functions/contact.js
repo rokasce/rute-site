@@ -118,8 +118,8 @@ class ContactFormHandler {
 
     const boundary = `bnd_${Date.now().toString(36)}_${Math.random().toString(36).slice(2)}`;
     const subject = this._encodeHeader(`Nauja žinutė nuo ${name}`);
-    const fromHeader = this._encodeHeader(`Kontaktų forma <${from}>`);
-    const replyTo = this._encodeHeader(`${name} <${email}>`);
+    const fromHeader = this._formatAddress("Kontaktų forma", from);
+    const replyTo = this._formatAddress(name, email);
 
     const rawEmail = [
       `MIME-Version: 1.0`,
@@ -169,6 +169,12 @@ class ContactFormHandler {
     if (/^[\x20-\x7E]*$/.test(s)) return s;
     const b64 = btoa(String.fromCharCode(...new TextEncoder().encode(s)));
     return `=?UTF-8?B?${b64}?=`;
+  }
+
+  _formatAddress(displayName, email) {
+    const safeName = String(displayName).replace(/[<>"]/g, "").trim();
+    if (!safeName) return `<${email}>`;
+    return `${this._encodeHeader(safeName)} <${email}>`;
   }
 
   _json(body, status) {
