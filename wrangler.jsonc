@@ -13,13 +13,13 @@
     "nodejs_compat"
   ],
   "vars": {
-    "FROM_EMAIL": "noreply@rcesnulevicius.lt",
-    "TO_EMAIL": "rokasce@gmail.com"
+    "FROM_EMAIL": "noreply@ruta-psichologe.lt",
+    "TO_EMAIL": "ruta.povilonyte@gmail.com"
   },
   "send_email": [
     {
       "name": "SEND_EMAIL",
-      "destination_address": "rokasce@gmail.com"
+      "destination_address": "ruta.povilonyte@gmail.com"
     }
   ]
 }
