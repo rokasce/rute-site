@@ -28,6 +28,7 @@
 
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌿</text></svg>">
 
+  <link rel="preload" as="image" href="./images/ruta.jpg" fetchpriority="high">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
@@ -180,10 +181,12 @@
 
     .about-photo {
       width: 100%;
-      aspect-ratio: 3 / 4;
+      max-height: 520px;
+      aspect-ratio: 2 / 3;
       object-fit: cover;
       border-radius: 18px;
       display: block;
+      background: var(--color-bg-alt);
     }
 
     .about-content { padding-top: 10px; }
@@ -454,7 +457,7 @@
   <div class="container">
     <div class="about-grid">
 
-      <img class="about-photo" src="./images/ruta.jpg" alt="Rūta Povilonytė" loading="lazy">
+      <img class="about-photo" src="./images/ruta.jpg" alt="Rūta Povilonytė" width="1366" height="2049" fetchpriority="high" decoding="async">
 
       <div class="about-content">
 
